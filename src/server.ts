@@ -7,7 +7,7 @@ dotenv.config()
 const app = express();
 
 db.on('error',err => {console.log('error', err)})
-db.once('open',() => {console.log('DB running and Connected')})
+db.once('open',() => {console.log('MongoDB running')})
 
 
 app.use(express.json())

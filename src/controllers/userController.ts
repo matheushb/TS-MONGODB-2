@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { UserService } from "../services/userService";
 
 export class UserController {
@@ -5,8 +6,8 @@ export class UserController {
         private readonly userService: UserService
     ) {}
 
-    getAllUsers = () => {
-        return this.userService.getAllUsers()   
+     getAllUsers = async(req: Request, res: Response) => {
+         res.json(await this.userService.getAllUsers())
     }
 
     InsertUser = () => {
