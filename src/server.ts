@@ -9,9 +9,8 @@ const app = express();
 db.on('error',err => {console.log('error', err)})
 db.once('open',() => {console.log('MongoDB running')})
 
-
 app.use(express.json())
-app.use('/', userRouter)
+app.use('/users', userRouter)
 
 const port = process.env.PORT || 8080
-app.listen(port, () => {console.log(`server running on http://localhost:${port}`)})
+app.listen(port, () => {console.log(`server running on http://localhost:${port}/users`)})

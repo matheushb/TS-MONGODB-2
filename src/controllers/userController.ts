@@ -1,29 +1,32 @@
 import { Request, Response } from "express";
-import { UserService } from "../services/userService";
+import { IUserService } from "../interfaces/IUser";
 
 export class UserController {
     constructor(
-        private readonly userService: UserService
+        private readonly userService: IUserService
     ) {}
 
-     getAllUsers = async(req: Request, res: Response) => {
-         res.json(await this.userService.getAllUsers())
+     getAllUsers = async (req: Request, res: Response) => {
+         res.status(200).json(await this.userService.getAllUsers())
     }
 
-    InsertUser = () => {
-
+    InsertUser = async(req: Request, res: Response) => {
+        res.status(201).json(await this.userService.insertUser(req.body))
     }
 
-    getUserById = () => {
-
+    getUserById = async(req: Request, res: Response) => {
+        const { id } = req.params
+        res.status(200).json(await this.userService.getUserById(id))
     }
 
-    updateUserById = () => {
-
+    updateUserById = async(req: Request, res: Response) => {
+        const { id } = req.params;
+        res.status(201).json(await this.userService.updateUserById(id, req.body ))
     }
 
-    deleteUserById = () => {
-
+    deleteUserById = async(req: Request, res: Response) => {
+        const { id } = req.params
+        res.status(200).json(await this.userService.deleteUserById(id))
     }
 
 

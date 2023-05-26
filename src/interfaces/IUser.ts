@@ -6,4 +6,16 @@ export interface User {
     id?: string
 }
 
-//dto para esconder a senha, ou campos que nao quero retornar
+export interface updateUserDTO {
+    name?: string 
+    password?: string
+    age?: number
+}
+
+export interface IUserService {
+    getAllUsers(): Promise<User[]>
+    getUserById(id: string): Promise<User>
+    insertUser(body: User): Promise<User>
+    deleteUserById(id: string): Promise<void>
+    updateUserById(id:string, body: updateUserDTO): Promise<void>
+}
